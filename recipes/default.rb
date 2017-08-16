@@ -3,7 +3,7 @@ package %w(php7.0 php7.0-fpm php7.0-mysql php7.0-zip php7.0-gd mcrypt php7.0-mcr
 git '/var/www/hotsapi' do
   repository "https://github.com/poma/hotsapi.git"
   action :checkout
-  notifies :run, execute "hotsapi-deploy-script"
+  notifies :run, 'execute[hotsapi-deploy-script]'
 end
 
 cookbook_file '/etc/nginx/sites-available/default' do
