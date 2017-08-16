@@ -1,30 +1,30 @@
 package %w(php7.0 php7.0-fpm php7.0-mysql php7.0-zip php7.0-gd mcrypt php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-curl php7.0-json composer zip unzip nginx git)
 
-#include_recipe 'composer'
-
 git '/var/www/hotsapi' do
-   repository "https://github.com/poma/hotsapi.git"
-   action :checkout
-   #user 'www-data'
-   #group 'www-data'
+  repository "https://github.com/poma/hotsapi.git"
+  action :checkout
+  notifies :run, execute "hotsapi-deploy-script"
 end
 
 cookbook_file '/etc/nginx/sites-available/default' do
-	source "nginx.conf"
-	#notifies :restart, "service[nginx]"
+  source "nginx.conf"
+  notifies :restart, "service[nginx]"
 end
 
-cookbook_file '/var/www/hotsapi/.env' do
-	source ".env"
+execute "hotsapi-deploy-script" do
+  cwd "/var/www/hotsapi"
+  command "./deploy.sh"
+  user "root"
+  action :nothing
 end
 
 
 package "python"
 
 git '/opt/heroprotocol' do
-   repository "https://github.com/Blizzard/heroprotocol.git"
-   revision 'master'
-   action :checkout
+  repository "https://github.com/Blizzard/heroprotocol.git"
+  revision 'master'
+  action :checkout
 end
 
 link '/usr/bin/heroprotocol' do
@@ -32,7 +32,7 @@ link '/usr/bin/heroprotocol' do
 end
 
 file '/opt/heroprotocol/heroprotocol.py' do
-  mode '755'
+  mode 755
 end
 
 cookbook_file '/etc/cron.daily/heroprotocol' do
