@@ -1,0 +1,11 @@
+{
+    "override_attributes": {
+
+    },
+	"run_list": [
+		"recipe[usability]",
+		"recipe[usability::zsh]",
+		"recipe[usability::ssh-key]",
+		"recipe[hotsapi]"
+	]
+}

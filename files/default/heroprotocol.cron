@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /opt/heroprotocol
+git pull origin master

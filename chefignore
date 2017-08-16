@@ -1,0 +1,6 @@
+Berksfile.lock
+*.deb
+cookbooks/
+nodes/
+bootstrap.sh
+chef.json
