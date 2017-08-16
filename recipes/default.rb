@@ -1,5 +1,7 @@
 package %w(php7.0 php7.0-fpm php7.0-mysql php7.0-zip php7.0-gd mcrypt php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-curl php7.0-json composer zip unzip nginx git)
 
+service 'nginx'
+
 git '/var/www/hotsapi' do
   repository "https://github.com/poma/hotsapi.git"
   action :checkout
