@@ -5,7 +5,6 @@ service 'nginx'
 git '/var/www/hotsapi' do
   repository "https://github.com/poma/hotsapi.git"
   action :checkout
-  notifies :run, 'execute[hotsapi-deploy-script]'
 end
 
 cookbook_file '/etc/nginx/sites-available/default' do
@@ -13,11 +12,17 @@ cookbook_file '/etc/nginx/sites-available/default' do
   notifies :restart, "service[nginx]"
 end
 
+template '/var/www/hotsapi/.env' do
+  source '.env.erb'
+  variables({
+    :env => node['hotsapi']['env']
+  })
+end
+
 execute "hotsapi-deploy-script" do
   cwd "/var/www/hotsapi"
   command "./deploy.sh"
   user "root"
-  action :nothing
 end
 
 

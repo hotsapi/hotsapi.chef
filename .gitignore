@@ -2,3 +2,4 @@ Berksfile.lock
 *.deb
 cookbooks/
 nodes/
+/chef.prod.json
