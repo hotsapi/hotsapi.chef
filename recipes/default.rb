@@ -42,7 +42,7 @@ file '/opt/heroprotocol/heroprotocol.py' do
   mode 755
 end
 
-cookbook_file '/etc/cron.daily/heroprotocol' do
+cookbook_file '/etc/cron.hourly/heroprotocol' do
   source "heroprotocol.cron"
   mode 755
 end
