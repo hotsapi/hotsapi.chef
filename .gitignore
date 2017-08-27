@@ -1,5 +1,6 @@
 Berksfile.lock
 *.deb
+*.deb.*
 cookbooks/
 nodes/
-/chef.prod.json
+/chef.json
