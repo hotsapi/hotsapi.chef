@@ -24,11 +24,11 @@ template '/var/www/hotsapi/.env' do
   })
 end
 
-execute "hotsapi-deploy-script" do
-  cwd "/var/www/hotsapi"
-  command "./deploy.sh"
-  user "root"
-end
+#execute "hotsapi-deploy-script" do
+#  cwd "/var/www/hotsapi"
+#  command "./deploy.sh"
+#  user "root"
+#end
 
 
 package "python"
