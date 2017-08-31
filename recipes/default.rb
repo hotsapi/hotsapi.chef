@@ -13,6 +13,10 @@ cookbook_file '/etc/nginx/sites-available/default' do
   notifies :restart, "service[nginx]"
 end
 
+cookbook_file '/etc/cron.d/laravel' do
+  source "laravel.cron"
+end
+
 cookbook_file '/etc/php/7.0/fpm/php.ini' do
   notifies :restart, "service[php7.0-fpm]"
 end

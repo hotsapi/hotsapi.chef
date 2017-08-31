@@ -1,0 +1,1 @@
+* * * * * www-data php /var/www/hotsapi/artisan schedule:run >> /dev/null 2>&1
