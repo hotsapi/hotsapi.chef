@@ -48,10 +48,10 @@ link '/usr/bin/heroprotocol' do
 end
 
 file '/opt/heroprotocol/heroprotocol.py' do
-  mode 0755
+  mode '755'
 end
 
 cookbook_file '/etc/cron.hourly/heroprotocol' do
   source "heroprotocol.cron"
-  mode 0755
+  mode '755'
 end
