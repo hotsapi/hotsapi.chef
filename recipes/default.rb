@@ -47,12 +47,11 @@ link '/usr/bin/heroprotocol' do
   to '/opt/heroprotocol/heroprotocol.py'
 end
 
-# for some reason file mode can be broken
 file '/opt/heroprotocol/heroprotocol.py' do
-  mode 755
+  mode 0755
 end
 
 cookbook_file '/etc/cron.hourly/heroprotocol' do
   source "heroprotocol.cron"
-  mode 755
+  mode 0755
 end
