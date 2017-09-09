@@ -13,7 +13,8 @@ execute "hotsapi-git" do
   live_stream true
 end
 
-cookbook_file '/etc/nginx/sites-available/hotsapi.conf' do
+cookbook_file '/etc/nginx/sites-available/default' do
+  source "hotsapi.conf"
   notifies :restart, "service[nginx]"
 end
 
