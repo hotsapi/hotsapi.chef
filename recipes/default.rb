@@ -8,6 +8,7 @@ service 'php7.0-fpm'
 # Don't use built in git resource because it doesn't track branch
 execute "hotsapi-git" do
   cwd "/var/www"
+  creates "/var/www/hotsapi"
   command "git clone https://github.com/poma/hotsapi.git"
   live_stream true
 end
@@ -52,6 +53,7 @@ package "python"
 # Don't use built in git resource because it doesn't track branch
 execute "heroprotocol-git" do
   cwd "/opt"
+  creates "/opt/heroprotocol"
   command "git clone https://github.com/Blizzard/heroprotocol.git"
   live_stream true
 end
