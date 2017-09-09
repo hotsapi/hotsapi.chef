@@ -64,3 +64,8 @@ cookbook_file '/etc/cron.hourly/heroprotocol' do
   source "heroprotocol.cron"
   mode '755'
 end
+
+
+##### General #####
+
+cookbook_file '/etc/rc.local'
