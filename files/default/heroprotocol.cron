@@ -1,4 +1,5 @@
 #!/bin/sh
 
 cd /opt/heroprotocol
-git pull origin master
+git pull
+chmod 755 /opt/heroprotocol/heroprotocol.py
