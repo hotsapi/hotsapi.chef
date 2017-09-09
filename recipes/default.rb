@@ -5,9 +5,11 @@ package %w(php7.0 php7.0-fpm php7.0-mysql php7.0-zip php7.0-gd mcrypt php7.0-mcr
 service 'nginx'
 service 'php7.0-fpm'
 
-git '/var/www/hotsapi' do
-  repository "https://github.com/poma/hotsapi.git"
-  action :checkout
+# Don't use built in git resource because it doesn't track branch
+execute "hotsapi-git" do
+  cwd "/var/www"
+  command "git clone https://github.com/poma/hotsapi.git"
+  live_stream true
 end
 
 cookbook_file '/etc/nginx/sites-available/hotsapi.conf' do
@@ -37,19 +39,21 @@ template '/var/www/hotsapi/.env' do
   })
 end
 
-#execute "hotsapi-deploy-script" do
-#  cwd "/var/www/hotsapi"
-#  command "./deploy.sh"
-#  user "root"
-#end
+execute "hotsapi-deploy-script" do
+  cwd "/var/www/hotsapi"
+  command "./deploy.sh"
+  live_stream true
+end
 
 ##### Hero protocol #####
 
 package "python"
 
-git '/opt/heroprotocol' do
-  repository "https://github.com/Blizzard/heroprotocol.git"
-  action :checkout
+# Don't use built in git resource because it doesn't track branch
+execute "heroprotocol-git" do
+  cwd "/opt"
+  command "git clone https://github.com/Blizzard/heroprotocol.git"
+  live_stream true
 end
 
 link '/usr/bin/heroprotocol' do
@@ -64,7 +68,6 @@ cookbook_file '/etc/cron.hourly/heroprotocol' do
   source "heroprotocol.cron"
   mode '755'
 end
-
 
 ##### General #####
 
