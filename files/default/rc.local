@@ -11,11 +11,18 @@
 #
 # By default this script does nothing.
 
-cd /opt/heroprotocol && git pull
-cd /var/www/hotsapi && ./deploy.sh
+# Logging
+exec 2> /var/log/rc.local.log
+exec 1>&2
+set -x
 
-# remove AWS BS restrictions
+# Remove AWS BS restrictions
 # no-port-forwarding,no-agent-forwarding,no-X11-forwarding,command="echo 'Please login as the user \"ubuntu\" rather than the user \"root\".';echo;sleep 10" ssh-rsa
 sed -i 's/^.*ssh-rsa/ssh-rsa/g' /root/.ssh/authorized_keys
+
+# Update our repos on boot
+export COMPOSER_HOME="/root" # Needed for deploy.sh
+cd /opt/heroprotocol && git pull
+cd /var/www/hotsapi && ./deploy.sh
 
 exit 0
