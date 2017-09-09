@@ -1,4 +1,6 @@
-package %w(php7.0 php7.0-fpm php7.0-mysql php7.0-zip php7.0-gd mcrypt php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-curl php7.0-json composer zip unzip nginx memcached php-memcached redis-server git)
+##### Laravel app #####
+
+package %w(php7.0 php7.0-fpm php7.0-mysql php7.0-zip php7.0-gd mcrypt php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-curl php7.0-json composer zip unzip nginx memcached php-memcached git)
 
 service 'nginx'
 service 'php7.0-fpm'
@@ -8,17 +10,24 @@ git '/var/www/hotsapi' do
   action :checkout
 end
 
-cookbook_file '/etc/nginx/sites-available/default' do
-  source "nginx.conf"
+cookbook_file '/etc/nginx/sites-available/hotsapi.conf' do
   notifies :restart, "service[nginx]"
 end
 
-cookbook_file '/etc/cron.d/laravel' do
-  source "laravel.cron"
+cookbook_file '/etc/nginx/nginx.conf' do
+  notifies :restart, "service[nginx]"
+end
+
+cookbook_file '/etc/php/7.0/fpm/pool.d/www.conf' do
+  notifies :restart, "service[php7.0-fpm]"
 end
 
 cookbook_file '/etc/php/7.0/fpm/php.ini' do
   notifies :restart, "service[php7.0-fpm]"
+end
+
+cookbook_file '/etc/cron.d/laravel' do
+  source "laravel.cron"
 end
 
 template '/var/www/hotsapi/.env' do
@@ -34,12 +43,12 @@ end
 #  user "root"
 #end
 
+##### Hero protocol #####
 
 package "python"
 
 git '/opt/heroprotocol' do
   repository "https://github.com/Blizzard/heroprotocol.git"
-  revision 'master'
   action :checkout
 end
 
