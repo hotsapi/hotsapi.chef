@@ -1,21 +1,24 @@
 {
     "hotsapi": {
         "env": {
-            "APP_NAME": "HotsApi",
-            "APP_KEY": "",
-            "APP_LOG_LEVEL": "info",
             "APP_URL": "http://hotsapi.net",
+            "APP_KEY": "",
+            "APP_ENV": "local",
+            "APP_DEBUG": true,
+            "APP_LOG_LEVEL": "debug",
 
             "AWS_KEY": "",
             "AWS_SECRET": "",
             "AWS_REGION": "eu-west-1",
-            "AWS_BUCKET": "hotsapi",
+            "AWS_BUCKET": "hotsapi-test",
 
-            "DB_HOST": "db.hotsapi.net",
+            "DB_HOST": "localhost",
             "DB_PORT": "3306",
             "DB_DATABASE": "hotsapi",
-            "DB_USERNAME": "hotsapi",
-            "DB_PASSWORD": ""
+            "DB_USERNAME": "homestead",
+            "DB_PASSWORD": "secret",
+
+            "ALLOW_BROKEN_REPLAYS": false
         }
     },
     "run_list": [
