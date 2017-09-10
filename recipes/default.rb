@@ -1,6 +1,6 @@
 ##### Laravel app #####
 
-package %w(php7.0 php7.0-fpm php7.0-mysql php7.0-zip php7.0-gd mcrypt php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-curl php7.0-json composer zip unzip nginx memcached php-memcached git)
+package %w(php7.0 php7.0-fpm php7.0-mysql php7.0-zip php7.0-gd mcrypt php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-curl php7.0-json composer zip unzip nginx memcached php-memcached supervisor git)
 
 service 'nginx'
 service 'php7.0-fpm'
@@ -46,6 +46,14 @@ execute "hotsapi-deploy-script" do
   command "./deploy.sh"
   live_stream true
 end
+
+# supervisor cookbook seems to be in ususable state so we will configure it manually
+cookbook_file "/etc/supervisor/conf.d/laravel-worker.conf"
+execute "supervisor-start" do
+  command "supervisorctl reread && supervisorctl update && supervisorctl start laravel-worker:*"
+  live_stream true
+end
+
 
 ##### Hero protocol #####
 
