@@ -48,7 +48,7 @@ end
 # Generate a new app key if not axists
 execute "hotsapi-generate-key" do
   cwd "/var/www/hotsapi"
-  command "grep -Fxq 'APP_KEY=' /var/www/hotsapi/.env' && php artisan key:generate"
+  command "grep -Fxq 'APP_KEY=' /var/www/hotsapi/.env && php artisan key:generate"
   live_stream true
 end
 
