@@ -1,3 +1,5 @@
+include_recipe 'apt'
+
 if node['hotsapi']['install_mysql']
   include_recipe 'hotsapi::mysql'
 end
