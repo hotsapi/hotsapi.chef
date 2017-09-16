@@ -5,7 +5,7 @@ license           'All Rights Reserved'
 description       'Installs/Configures hotsapi'
 long_description  'Installs/Configures hotsapi'
 
-version           '0.1.1'
+version           '0.1.2'
 chef_version      '>= 12.1' if respond_to?(:chef_version)
 
 depends 'apt'
