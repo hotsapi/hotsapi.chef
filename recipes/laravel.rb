@@ -45,6 +45,15 @@ execute "hotsapi-deploy-script" do
   live_stream true
 end
 
+# Generate a new app key if not axists
+if File.readlines("/var/www/hotsapi/.env").grep(/^APP_KEY=$/).any?
+  execute "hotsapi-deploy-script" do
+    cwd "/var/www/hotsapi"
+    command "php artisan key:generate"
+    live_stream true
+  end
+end
+
 # supervisor cookbook seems to be in ususable state so we will configure it manually
 cookbook_file "/etc/supervisor/conf.d/laravel-worker.conf"
 execute "supervisor-start" do
