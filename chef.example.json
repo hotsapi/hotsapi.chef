@@ -7,6 +7,7 @@
             "APP_DEBUG": true,
             "APP_LOG_LEVEL": "debug",
 
+            "FILESYSTEM_CLOUD": "local",
             "AWS_KEY": "",
             "AWS_SECRET": "",
             "AWS_REGION": "eu-west-1",
