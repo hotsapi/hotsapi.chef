@@ -8,4 +8,4 @@ This repo is used to deploy [HotsApi](https://github.com/poma/hotsapi).
 * Clone a chef repo `git clone https://github.com/poma/hotsapi.chef.git`
 * `cd hotsapi.chef`
 * Modify a config file with your `.env` values `cp chef.example.json chef.json && vi chef.json`
-* Run chef `./bootstrap.sh`
+* Run chef `sudo ./bootstrap.sh`

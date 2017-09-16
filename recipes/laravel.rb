@@ -46,12 +46,10 @@ execute "hotsapi-deploy-script" do
 end
 
 # Generate a new app key if not axists
-if File.readlines("/var/www/hotsapi/.env").grep(/^APP_KEY=$/).any?
-  execute "hotsapi-deploy-script" do
-    cwd "/var/www/hotsapi"
-    command "php artisan key:generate"
-    live_stream true
-  end
+execute "hotsapi-generate-key" do
+  cwd "/var/www/hotsapi"
+  command "grep -Fxq 'APP_KEY=' /var/www/hotsapi/.env' && php artisan key:generate"
+  live_stream true
 end
 
 # supervisor cookbook seems to be in ususable state so we will configure it manually
