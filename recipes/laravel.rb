@@ -19,7 +19,7 @@ cookbook_file '/etc/ssl/certs/hotsapi.chained.pem' do
   notifies :reload, "service[nginx]"
 end
 
-cookbook_file '/etc/ssl/keys/hotsapi.key' do
+cookbook_file '/etc/ssl/private/hotsapi.key' do
   source 'ssl-cert-snakeoil.key'
   mode '640'
   action :create_if_missing
