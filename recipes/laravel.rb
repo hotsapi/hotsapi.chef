@@ -11,21 +11,36 @@ execute "hotsapi-git" do
   live_stream true
 end
 
+# Those are dummy self-signed certificates, not the ones used in production
+cookbook_file '/etc/ssl/certs/hotsapi.chained.pem' do
+  source 'ssl-cert-snakeoil.pem'
+  mode '644'
+  action :create_if_missing
+  notifies :reload, "service[nginx]"
+end
+
+cookbook_file '/etc/ssl/keys/hotsapi.key' do
+  source 'ssl-cert-snakeoil.key'
+  mode '640'
+  action :create_if_missing
+  notifies :reload, "service[nginx]"
+end
+
 cookbook_file '/etc/nginx/sites-available/default' do
   source "hotsapi.conf"
-  notifies :restart, "service[nginx]"
+  notifies :reload, "service[nginx]"
 end
 
 cookbook_file '/etc/nginx/nginx.conf' do
-  notifies :restart, "service[nginx]"
+  notifies :reload, "service[nginx]"
 end
 
 cookbook_file '/etc/php/7.0/fpm/pool.d/www.conf' do
-  notifies :restart, "service[php7.0-fpm]"
+  notifies :reload, "service[php7.0-fpm]"
 end
 
 cookbook_file '/etc/php/7.0/fpm/php.ini' do
-  notifies :restart, "service[php7.0-fpm]"
+  notifies :reload, "service[php7.0-fpm]"
 end
 
 cookbook_file '/etc/cron.d/laravel' do
@@ -54,6 +69,7 @@ end
 
 # supervisor cookbook seems to be in ususable state so we will configure it manually
 cookbook_file "/etc/supervisor/conf.d/laravel-worker.conf"
+
 execute "supervisor-start" do
   command "supervisorctl reread && supervisorctl update && supervisorctl start laravel-worker:*"
   live_stream true
