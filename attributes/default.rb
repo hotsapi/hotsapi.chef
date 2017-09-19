@@ -1,0 +1,1 @@
+default['hotsapi']['install_mysql'] = false
