@@ -11,7 +11,7 @@ package 'dotnet-runtime-2.0.0'
 execute "get-hotsapi-parser" do
   cwd "/opt"
   creates "/opt/hotsapi-parser"
-  command "mkdir hotsapi-parser && cd hotsapi-parser && curl https://s3-eu-west-1.amazonaws.com/poma/Hotsapi.Parser/master/latest/parser.tar.gz > parser.tar.gz && tar -xzf parser.tar.gz"
+  command "mkdir hotsapi-parser && cd hotsapi-parser && curl https://s3-eu-west-1.amazonaws.com/hotsapi-public/Hotsapi.Parser/master/latest/parser.tar.gz > parser.tar.gz && tar -xzf parser.tar.gz"
   live_stream true
 end
 
