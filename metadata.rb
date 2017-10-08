@@ -10,4 +10,5 @@ chef_version      '>= 12.1' if respond_to?(:chef_version)
 
 depends 'apt'
 depends 'cloudwatch-logs'
+depends 'cloudwatch_monitoring'
 #depends 'supervisor'
