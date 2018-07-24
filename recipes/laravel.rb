@@ -71,6 +71,6 @@ end
 cookbook_file "/etc/supervisor/conf.d/laravel-worker.conf"
 
 execute "supervisor-start" do
-  command "supervisorctl reread && supervisorctl update && supervisorctl start laravel-worker:*"
+  command "supervisorctl reread && supervisorctl update && supervisorctl start 'laravel-worker:*'"
   live_stream true
 end
