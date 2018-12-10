@@ -22,7 +22,12 @@ sed -i 's/^.*ssh-rsa/ssh-rsa/g' /root/.ssh/authorized_keys
 
 # Update our repos on boot
 export COMPOSER_HOME="/root" # Needed for deploy.sh
-cd /opt/heroprotocol && git pull
+cd /opt/heroprotocol && git stash && git pull && git stash pop && chmod +x heroprotocol.py
 cd /var/www/hotsapi && ./deploy.sh
+
+# same as cores count, low CPU priority
+for i in $(seq 0 $(cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l)); do
+  nohup nice php artisan hotsapi:parse >> ./storage/logs/parse.txt &
+done
 
 exit 0

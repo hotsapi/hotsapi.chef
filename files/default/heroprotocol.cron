@@ -1,5 +1,7 @@
 #!/bin/sh
 
 cd /opt/heroprotocol
+git stash
 git pull
+git stash pop
 chmod 755 /opt/heroprotocol/heroprotocol.py
