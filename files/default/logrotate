@@ -1,0 +1,11 @@
+/var/www/hotsapi/storage/logs/*
+{
+	daily
+	missingok
+	rotate 7
+	compress
+	notifempty
+	copytruncate
+}
+
+# If you want to test it, you can run "logrotate --force laravel" to force it to do one rotation immediately.

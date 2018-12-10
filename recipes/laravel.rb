@@ -47,6 +47,10 @@ cookbook_file '/etc/cron.d/laravel' do
   source "laravel.cron"
 end
 
+cookbook_file '/etc/logrotate.d/laravel' do
+  source "logrotate"
+end
+
 template '/var/www/hotsapi/.env' do
   source '.env.erb'
   variables({
