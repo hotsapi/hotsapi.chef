@@ -33,3 +33,11 @@ default['cwlogs']['logfiles']['worker-log'] = {
   :datetime_format  => '%Y-%m-%d %H:%M:%S',
   :initial_position => 'end_of_file'
 }
+
+default['cwlogs']['logfiles']['parser-log'] = {
+    :log_stream_name  => '{instance_id}',
+    :log_group_name   => 'laravel/parser.log',
+    :file             => '/var/www/hotsapi/storage/logs/parser.log',
+    :datetime_format  => '%Y-%m-%d %H:%M:%S',
+    :initial_position => 'end_of_file'
+}

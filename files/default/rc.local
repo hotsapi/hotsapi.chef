@@ -27,7 +27,7 @@ cd /var/www/hotsapi && ./deploy.sh
 
 # same as cores count, low CPU priority
 for i in $(seq 0 $(cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l)); do
-  nohup nice php artisan hotsapi:parse >> ./storage/logs/parse.txt &
+  nohup nice php artisan hotsapi:parse >> ./storage/logs/parser.log &
 done
 
 exit 0
