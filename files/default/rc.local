@@ -31,6 +31,7 @@ git pull
 ./bootstrap.sh
 
 # same as cores count + 1, low CPU priority
+cd /var/www/hotsapi
 for i in $(seq 0 $(cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l)); do
   nohup nice php artisan hotsapi:parse >> ./storage/logs/parser.log &
 done
