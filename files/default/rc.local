@@ -25,8 +25,8 @@ export COMPOSER_HOME="/root" # Needed for deploy.sh
 /etc/cron.hourly/heroprotocol
 cd /var/www/hotsapi && ./deploy.sh
 
-# same as cores count, low CPU priority
-for i in $(seq 1 $(cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l)); do
+# same as cores count + 1, low CPU priority
+for i in $(seq 0 $(cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l)); do
   nohup nice php artisan hotsapi:parse >> ./storage/logs/parser.log &
 done
 
