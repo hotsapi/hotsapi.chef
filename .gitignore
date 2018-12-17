@@ -1,5 +1,6 @@
 Berksfile.lock
 cookbooks/
 nodes/
+.gnupg
 /chef.json
 /chef.production.json

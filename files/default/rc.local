@@ -28,7 +28,7 @@ cd /var/www/hotsapi && ./deploy.sh
 rm -rf /opt/hotsapi-parser # for update
 cd /root/hotsapi.chef
 git pull
-./bootstrap.sh
+HOME=/root ./bootstrap.sh
 
 # same as cores count + 1, low CPU priority
 cd /var/www/hotsapi
