@@ -6,7 +6,7 @@ default['cwlogs']['logfiles']['access-log'] = {
   :log_stream_name  => '{instance_id}',
   :log_group_name   => 'nginx/access.log',
   :file             => '/var/log/nginx/access.log',
-  :datetime_format  => '[%d/%m/%Y:%H:%M:%S +0300]',
+  :datetime_format  => '[%d/%m/%Y:%H:%M:%S %z]',
   :initial_position => 'end_of_file'
 }
 
@@ -14,7 +14,7 @@ default['cwlogs']['logfiles']['error-log'] = {
   :log_stream_name  => '{instance_id}',
   :log_group_name   => 'nginx/error.log',
   :file             => '/var/log/nginx/error.log',
-  :datetime_format  => '[%d/%m/%Y:%H:%M:%S +0300]',
+  :datetime_format  => '[%d/%m/%Y:%H:%M:%S %z]',
   :initial_position => 'end_of_file'
 }
 
