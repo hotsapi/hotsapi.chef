@@ -1,4 +1,4 @@
-/var/www/hotsapi/storage/logs/*
+/var/www/hotsapi/storage/logs/*.log
 {
 	daily
 	missingok
@@ -6,6 +6,7 @@
 	compress
 	notifempty
 	copytruncate
+	su www-data www-data
 }
 
 # If you want to test it, you can run "logrotate --force laravel" to force it to do one rotation immediately.
